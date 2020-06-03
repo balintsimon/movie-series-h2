@@ -1,5 +1,6 @@
 package com.codecool.movieseries.entity;
 
+import com.codecool.movieseries.repository.EpisodeRepository;
 import lombok.*;
 
 import javax.persistence.*;
@@ -25,4 +26,8 @@ public class Series {
     @OneToMany(mappedBy = "series", cascade = CascadeType.PERSIST)
     @EqualsAndHashCode.Exclude
     private List<Season> seasons;
+
+//    public void calculateNumberOfSeasons() {
+//        this.numberOfSeasons = EpisodeRepository.findByNumberOfSeasons();
+//    }
 }

@@ -1,5 +1,6 @@
 package com.codecool.movieseries.entity;
 
+import com.codecool.movieseries.repository.EpisodeRepository;
 import lombok.*;
 
 import javax.persistence.*;
