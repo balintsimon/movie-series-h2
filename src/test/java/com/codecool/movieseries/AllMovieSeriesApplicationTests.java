@@ -12,12 +12,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.boot.test.autoconfigure.orm.jpa.TestEntityManager;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatExceptionOfType;
 
 //@SpringBootTest
 @ExtendWith({SpringExtension.class})
@@ -50,4 +52,29 @@ class AllMovieSeriesApplicationTests {
         assertThat(episodeList).hasSize(1);
     }
 
+    @Test
+    public void saveUniqueFieldTwice() {
+
+        Episode GoTEp1 = Episode.builder()
+                .title("GoT Ep 1")
+                .genre(Lists.newArrayList(Genre.FANTASY))
+                .build();
+
+        Episode GoTEp2 = Episode.builder()
+                .title("GoT Ep 1")
+                .genre(Lists.newArrayList(Genre.FANTASY))
+                .build();
+
+        episodeRepository.save(GoTEp1);
+        episodeRepository.save(GoTEp2);
+        assertThatExceptionOfType(DataIntegrityViolationException.class);
+    }
+
+    @Test
+    public void episodeTitleShouldNotBeNull() {
+        Episode GoTEp1 = Episode.builder()
+                .genre(Lists.newArrayList(Genre.FANTASY))
+                .build();
+        assertThatExceptionOfType(DataIntegrityViolationException.class);
+    }
 }
