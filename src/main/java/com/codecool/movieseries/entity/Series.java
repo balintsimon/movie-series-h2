@@ -1,13 +1,9 @@
 package com.codecool.movieseries.entity;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
+import java.util.List;
 
 @Data
 @NoArgsConstructor
@@ -19,4 +15,14 @@ public class Series {
     @Id
     @GeneratedValue
     private Long id;
+
+    @Column(unique = true, nullable = false)
+    private String title;
+
+    @Transient
+    private int numberOfSeasons;
+
+    @OneToMany(mappedBy = "series", cascade = CascadeType.PERSIST)
+    @EqualsAndHashCode.Exclude
+    private List<Season> seasons;
 }

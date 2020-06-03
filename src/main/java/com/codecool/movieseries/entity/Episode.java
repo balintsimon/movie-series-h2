@@ -1,13 +1,9 @@
 package com.codecool.movieseries.entity;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
+import java.util.List;
 
 @Data
 @NoArgsConstructor
@@ -19,4 +15,16 @@ public class Episode {
     @Id
     @GeneratedValue
     private Long id;
+
+    @ManyToOne
+    private Season season;
+
+    private int length;
+
+    @Column(unique = true, nullable = false)
+    private String title;
+
+    @Enumerated(EnumType.STRING)
+    @ElementCollection
+    private List<Genre> genre;
 }
