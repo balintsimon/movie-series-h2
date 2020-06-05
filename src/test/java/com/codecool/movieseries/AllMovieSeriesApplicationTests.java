@@ -6,6 +6,7 @@ import com.codecool.movieseries.repository.EpisodeRepository;
 import com.codecool.movieseries.repository.SeasonRepository;
 import com.codecool.movieseries.repository.SeriesRepository;
 import org.assertj.core.util.Lists;
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,8 +19,7 @@ import org.springframework.test.context.junit.jupiter.SpringExtension;
 
 import java.util.List;
 
-import static org.assertj.core.api.Assertions.assertThat;
-import static org.assertj.core.api.Assertions.assertThatExceptionOfType;
+import static org.assertj.core.api.Assertions.*;
 
 //@SpringBootTest
 @ExtendWith({SpringExtension.class})
@@ -66,8 +66,7 @@ class AllMovieSeriesApplicationTests {
                 .build();
 
         episodeRepository.save(GoTEp1);
-        episodeRepository.save(GoTEp2);
-        assertThatExceptionOfType(DataIntegrityViolationException.class);
+        Assertions.assertThrows(DataIntegrityViolationException.class, () -> episodeRepository.save(GoTEp2));
     }
 
     @Test
