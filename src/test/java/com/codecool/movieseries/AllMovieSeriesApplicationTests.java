@@ -74,6 +74,6 @@ class AllMovieSeriesApplicationTests {
         Episode GoTEp1 = Episode.builder()
                 .genre(Lists.newArrayList(Genre.FANTASY))
                 .build();
-        assertThatExceptionOfType(DataIntegrityViolationException.class);
+        Assertions.assertThrows(DataIntegrityViolationException.class, () -> episodeRepository.save(GoTEp1));
     }
 }
