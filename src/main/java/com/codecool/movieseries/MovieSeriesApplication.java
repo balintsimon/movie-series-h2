@@ -15,14 +15,16 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Profile;
 
+import java.util.List;
+
 @SpringBootApplication
 public class MovieSeriesApplication {
 
-//    @Autowired
-//    private EpisodeRepository episodeRepository;
-//
-//    @Autowired
-//    private SeasonRepository seasonRepository;
+    @Autowired
+    private EpisodeRepository episodeRepository;
+
+    @Autowired
+    private SeasonRepository seasonRepository;
 
     @Autowired
     private SeriesRepository seriesRepository;
@@ -56,6 +58,11 @@ public class MovieSeriesApplication {
 
             seriesRepository.save(GoT);
 
+            List<Season> seasonList = seasonRepository.findAll();
+            System.out.println("Got season list " + seasonList.toString());
+            for (Season season : seasonList) {
+                System.out.println(season.getSeasonNumber());
+            }
         };
     }
 }
