@@ -66,7 +66,7 @@ class AllMovieSeriesApplicationTests {
                 .build();
 
         episodeRepository.save(GoTEp1);
-        Assertions.assertThrows(DataIntegrityViolationException.class, () -> episodeRepository.save(GoTEp2));
+        Assertions.assertThrows(DataIntegrityViolationException.class, () -> episodeRepository.saveAndFlush(GoTEp2));
     }
 
     @Test
