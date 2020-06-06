@@ -15,6 +15,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Profile;
 
+import java.util.Arrays;
 import java.util.List;
 
 @SpringBootApplication
@@ -47,22 +48,28 @@ public class MovieSeriesApplication {
                     .series(GoT)
                     .build();
 
+            Season GoTSeason2 = Season.builder()
+                    .seasonNumber(1)
+                    .releaseYear(2010)
+                    .series(GoT)
+                    .build();
+
             Episode GoTEp1 = Episode.builder()
                     .title("GoT Ep 1")
                     .season(GoTSeason1)
                     .genre(Lists.newArrayList(Genre.FANTASY))
                     .build();
 
-            GoTEp1.setSeason(GoTSeason1);
-            GoTSeason1.setSeries(GoT);
+            GoT.setSeasons(Arrays.asList(GoTSeason1, GoTSeason2));
+            GoTSeason1.setEpisodes(Arrays.asList(GoTEp1));
 
             seriesRepository.save(GoT);
 
-            List<Season> seasonList = seasonRepository.findAll();
-            System.out.println("Got season list " + seasonList.toString());
-            for (Season season : seasonList) {
-                System.out.println(season.getSeasonNumber());
-            }
+//            List<Season> seasonList = seasonRepository.findAll();
+//            System.out.println("Got season list " + seasonList.toString());
+//            for (Season season : seasonList) {
+//                System.out.println(season.getSeasonNumber());
+//            }
         };
     }
 }

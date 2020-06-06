@@ -25,6 +25,7 @@ public class Series {
 
     @OneToMany(mappedBy = "series", cascade = CascadeType.PERSIST)
     @EqualsAndHashCode.Exclude
+//    @ToString.Exclude // TODO: check if we actually need this
     private List<Season> seasons;
 
 //    public void calculateNumberOfSeasons() {

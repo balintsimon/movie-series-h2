@@ -20,11 +20,13 @@ public class Season {
     private int releaseYear;
 
     @ManyToOne
-//    @Column(unique = true, nullable = false)
+    @EqualsAndHashCode.Exclude // TODO: check if we actually need this
+//    @ToString.Exclude // TODO: check if we actually need this
     private Series series;
 
     @OneToMany(mappedBy = "season", cascade = CascadeType.PERSIST)
     @EqualsAndHashCode.Exclude
+    @ToString.Exclude
     private List<Episode> episodes;
 
 

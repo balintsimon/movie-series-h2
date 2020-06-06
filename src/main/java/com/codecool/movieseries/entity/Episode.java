@@ -23,6 +23,7 @@ public class Episode {
     private int length;
 
     @Column(unique = true, nullable = false)
+    @EqualsAndHashCode.Exclude
     private String title;
 
     @Enumerated(EnumType.STRING)
