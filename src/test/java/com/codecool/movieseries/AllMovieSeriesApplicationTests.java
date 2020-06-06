@@ -14,6 +14,7 @@ import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.boot.test.autoconfigure.orm.jpa.TestEntityManager;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.dao.DataIntegrityViolationException;
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 
@@ -46,9 +47,16 @@ class AllMovieSeriesApplicationTests {
                 .genre(Lists.newArrayList(Genre.FANTASY))
                 .build();
 
+        List<Episode> episodeList = episodeRepository.findAll();
+        assertThat(episodeList).hasSize(0);
+
+        assert episodeRepository != null;
         episodeRepository.save(GoTEp1);
 
-        List<Episode> episodeList = episodeRepository.findAll();
+        assert episodeRepository != null;
+        assertThat(episodeRepository).isNotNull();
+
+        episodeList = episodeRepository.findAll();
         assertThat(episodeList).hasSize(1);
     }
 
