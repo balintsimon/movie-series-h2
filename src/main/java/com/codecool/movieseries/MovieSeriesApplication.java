@@ -65,11 +65,11 @@ public class MovieSeriesApplication {
 
             seriesRepository.save(GoT);
 
-//            List<Season> seasonList = seasonRepository.findAll();
-//            System.out.println("Got season list " + seasonList.toString());
-//            for (Season season : seasonList) {
-//                System.out.println(season.getSeasonNumber());
-//            }
+            List<Season> seasonList = seasonRepository.findAllBySeasonNumber(1);
+            System.out.println("Got season list ");
+            for (Season season : seasonList) {
+                System.out.println(season.getSeasonNumber());
+            }
         };
     }
 }

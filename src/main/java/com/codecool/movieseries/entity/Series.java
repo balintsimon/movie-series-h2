@@ -1,7 +1,9 @@
 package com.codecool.movieseries.entity;
 
 import com.codecool.movieseries.repository.EpisodeRepository;
+import com.codecool.movieseries.repository.SeasonRepository;
 import lombok.*;
+import org.springframework.beans.factory.annotation.Autowired;
 
 import javax.persistence.*;
 import java.util.List;
@@ -27,8 +29,4 @@ public class Series {
     @EqualsAndHashCode.Exclude
 //    @ToString.Exclude // TODO: check if we actually need this
     private List<Season> seasons;
-
-//    public void calculateNumberOfSeasons() {
-//        this.numberOfSeasons = EpisodeRepository.findByNumberOfSeasons();
-//    }
 }

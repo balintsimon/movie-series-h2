@@ -9,4 +9,6 @@ import java.util.List;
 public interface SeasonRepository extends JpaRepository<Season, Long> {
     @Query(value = "SELECT s FROM Season s")
     List<Season> findAll();
+
+    List<Season> findAllBySeasonNumber(int i);
 }
